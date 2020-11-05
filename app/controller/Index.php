@@ -13,8 +13,19 @@ class Index extends BaseController
     }
 
     function getOneWord(){
-        $words =  Words::where("flag","0")->orderRaw('rand()')->limit(1)->select();
-        return json($words[0]);
+        $words = Words::where("flag", "0")->orderRaw('rand()')->limit(1)->select();
+        $words = $words[0];
+        return json($words);
+    }
+
+    function lickWords(){
+        $id = input('id');
+        if (!$id){
+            return;
+        }
+        $words = Words::find($id);
+        $words -> lickCount += 1;
+        $words -> save();
     }
 
     function getOneDiary(){
