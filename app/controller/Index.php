@@ -13,9 +13,7 @@ class Index extends BaseController
     }
 
     function getOneWord(){
-        $words = Words::where("flag", "0")->orderRaw('rand()')->limit(1)->select();
-        $words = $words[0];
-        return json($words);
+        return json();
     }
 
     function lickWords(){
