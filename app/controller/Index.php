@@ -2,12 +2,13 @@
 namespace app\controller;
 
 use app\BaseController;
+use app\facade\Utils;
 use app\model\Diary;
 use app\model\Words;
 use think\facade\View;
 
-class Index extends BaseController
-{
+class Index extends BaseController{
+
     function index(){
         return View::fetch('index');
     }
@@ -21,6 +22,7 @@ class Index extends BaseController
         if (!$id){
             return;
         }
+        $ip = Utils::get_real_ip();
         $words = Words::find($id);
         $words -> lickCount += 1;
         $words -> save();
