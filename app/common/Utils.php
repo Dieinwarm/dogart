@@ -3,6 +3,10 @@ namespace app\common;
 
 class Utils{
 
+    /**
+     * 获得用户的真实IP
+     * @return bool|mixed
+     */
     function get_real_ip(){
         $ip = FALSE;
         //客户端IP 或 NONE
