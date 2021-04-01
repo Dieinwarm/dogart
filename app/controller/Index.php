@@ -5,6 +5,7 @@ use app\BaseController;
 use app\facade\Utils;
 use app\model\Diary;
 use app\model\Words;
+use think\facade\Cache;
 use think\facade\View;
 
 class Index extends BaseController{
@@ -14,7 +15,11 @@ class Index extends BaseController{
     }
 
     function getOneWord(){
-        return json();
+        $words = Words::where("flag", "0")->orderRaw('rand()')->limit(1)->select();
+        $words = $words[0];
+        $ip = Utils::get_real_ip();
+        $words -> lickDisable = Cache::get($ip.$words -> id,false);
+        return json($words);
     }
 
     function lickWords(){
@@ -23,10 +28,14 @@ class Index extends BaseController{
             return;
         }
         $ip = Utils::get_real_ip();
+        if(Cache::get($ip.$id,false)){
+            return;
+        }else{
+            Cache::set($ip.$id,'',10800);
+        }
         $words = Words::find($id);
-        $words -> lickCount += 1;
-        $words -> save();
-        return json($words);
+        $wordsLick = $words->lick($id);
+        return json($wordsLick);
     }
 
     function getOneDiary(){

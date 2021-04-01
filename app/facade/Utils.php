@@ -1,10 +1,12 @@
 <?php
 namespace app\facade;
 
-class Utils{
+use think\Facade;
+
+class Utils extends Facade {
 
     protected static function getFacadeClass(){
-        return "app/common/Utils";
+        return "app\common\Utils";
     }
 
 }
