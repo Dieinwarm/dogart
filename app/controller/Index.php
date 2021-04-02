@@ -44,11 +44,15 @@ class Index extends BaseController{
     }
 
     function addWords(){
-        Words::create([
-            'content' => input('post.words'),
-            'lickCount' => '0',
-            'flag' => '1'
-        ]);
+        $res = Utils::CheckText(input('post.words'));
+        if ($res -> conclusionType == 1){
+            Words::create([
+                'content' => input('post.words'),
+                'lickCount' => '0',
+                'flag' => '1'
+            ]);
+        }
+        return $res;
     }
 
 }
