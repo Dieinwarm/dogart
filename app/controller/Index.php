@@ -34,7 +34,7 @@ class Index extends BaseController{
             Cache::set($ip.$id,'',10800);
         }
         $words = Words::find($id);
-        $wordsLick = $words->lick($id);
+        $wordsLick = $words -> lick($id);
         return json($wordsLick);
     }
 
