@@ -45,11 +45,13 @@ class Index extends BaseController{
 
     function addWords(){
         $res = Utils::CheckText(input('post.words'));
+        $ip = Utils::get_real_ip();
         if ($res -> conclusionType == 1){
             Words::create([
-                'content' => input('post.words'),
-                'lickCount' => '0',
-                'flag' => '1'
+                'content'   =>  input('post.words'),
+                'lickCount' =>  '0',
+                'ipaddress' =>  $ip,
+                'flag'      =>  '1'
             ]);
         }
         return $res;
