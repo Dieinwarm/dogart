@@ -25,11 +25,11 @@ class Index extends BaseController{
     function lickWords(){
         $id = input('id');
         if (!$id){
-            return;
+            return null;
         }
         $ip = Utils::get_real_ip();
         if(Cache::get($ip.$id,false)){
-            return;
+            return null;
         }else{
             Cache::set($ip.$id,'',10800);
         }
@@ -48,10 +48,11 @@ class Index extends BaseController{
         $ip = Utils::get_real_ip();
         if ($res -> conclusionType == 1){
             Words::create([
-                'content'   =>  input('post.words'),
-                'lickCount' =>  '0',
-                'ipaddress' =>  $ip,
-                'flag'      =>  '1'
+                'content'       =>  input('post.words'),
+                'lickCount'     =>  '0',
+                'ipaddress'     =>  $ip,
+                'createdate'    =>  date("Y-m-d H:m:s"),
+                'flag'          =>  '1'
             ]);
         }
         return $res;

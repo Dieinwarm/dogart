@@ -13,10 +13,9 @@ class CheckLogin{
         if (!session('?login')) {
             //  未登录重定向到登陆页面
             $res = array(
-                "code"  =>  -1,
-                "msg"   =>  "do not have permission"
+                "msg"   =>  "Do not have permission"
             );
-            return json($res);
+            return json($res,401);
         }
         // 已登录继续执行请求
         return $next($request);

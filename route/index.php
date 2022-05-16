@@ -9,6 +9,11 @@ Route::group(function (){
     Route::post("/wordslick","/index/lickWords");
     Route::post("/addWords","/index/addWords");
     Route::get("/datas","/index/datas");
-    Route::post("/admin/getWords","/Admin/getWordsData")->middleware('checkLogin');
 })->allowCrossDomain();
+
+Route::group(function (){
+    Route::get("/admin/getWords","/Admin/getWordsData");
+    Route::post("/admin/changeState","/Admin/passVerification");
+})->allowCrossDomain()->middleware('checkLogin');
+//})->allowCrossDomain();
 

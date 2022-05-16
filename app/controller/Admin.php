@@ -6,13 +6,10 @@ use app\model\Words;
 
 class Admin{
 
-    function getWordsData(){
-        $type = input("type");
-        $wordsArray = Words::where("flag",$type) -> select();
-        return json($wordsArray);
-    }
-
     function login(){
+        if (session('?login')) {
+            return true;
+        }
         $name = input("name");
         $password = input("password");
         $user = User::where([
@@ -26,6 +23,26 @@ class Admin{
             $res = session("login");
         }
         return json($res);
+    }
+
+    function getWordsData(){
+        $type = input("type");
+        $wordsArray = Words::where("flag",$type) -> select();
+        return json($wordsArray);
+    }
+
+    function passVerification(){
+        $id = input("id");
+        $type = input("type");
+        if (!$id){
+            return null;
+        }
+        if ($type != "yes" && $type != "no"){
+            return "非法请求";
+        }
+        $word = Words::find($id);
+        $word -> changeFlag($type);
+        return json("success");
     }
 
 }
