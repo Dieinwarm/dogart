@@ -4,7 +4,7 @@ namespace app\controller;
 use app\model\User;
 use app\model\Words;
 
-class Admin{
+class AdminController{
 
     function login(){
         if (session('?login')) {

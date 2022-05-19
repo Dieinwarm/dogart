@@ -10,4 +10,4 @@
 // +----------------------------------------------------------------------
 use think\facade\Route;
 
-Route::get('/api/words', 'Api/getWords')->allowCrossDomain();
+Route::get('/api/words', 'ApiController/getWords')->allowCrossDomain();

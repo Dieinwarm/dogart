@@ -5,6 +5,16 @@
 
 采用thinkphp6.0做后端
 
-前端用elementUI，采用了router实现的单应用，并使用vue-cli 编译
+配合前端项目使用，前端项目：https://github.com/Dieinwarm/dogvite
 
-练手项目，主要是学习Vue的使用
+### 使用方式
+
+php是世界上最好的语言（maybe
+
+1、新建数据库，导入 dog.sql 
+
+2、修改 config/database.php 里的数据库信息
+
+3、前端打包后放置 public 目录替换
+
+4、运行php (PHP >= 7.4)
