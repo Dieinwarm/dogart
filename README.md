@@ -13,8 +13,10 @@ php是世界上最好的语言（maybe
 
 1、新建数据库，导入 dog.sql 
 
-2、修改 config/database.php 里的数据库信息
+2、项目内执行 composer install 安装 tp6 依赖
 
-3、前端打包后放置 public 目录替换
+3、修改 config/database.php 里的数据库信息
 
-4、运行php (PHP >= 7.4)
+4、前端打包后放置 public 目录替换
+
+5、运行php (PHP >= 7.4)
