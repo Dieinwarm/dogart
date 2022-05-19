@@ -1,8 +1,10 @@
 <?php
 namespace app\controller;
 
+use app\model\Diary;
 use app\model\User;
 use app\model\Words;
+use think\facade\Db;
 
 class AdminController{
 
@@ -31,7 +33,13 @@ class AdminController{
         return json($wordsArray);
     }
 
-    function passVerification(){
+    function getDiarysData(){
+        $type = input("type");
+        $wordsArray = Diary::where("flag",$type) -> select();
+        return json($wordsArray);
+    }
+
+    function changeWordsState(){
         $id = input("id");
         $type = input("type");
         if (!$id){
@@ -43,6 +51,30 @@ class AdminController{
         $word = Words::find($id);
         $word -> changeFlag($type);
         return json("success");
+    }
+
+    function changeDiaryState(){
+        $id = input("id");
+        $type = input("type");
+        if (!$id){
+            return null;
+        }
+        if ($type != "yes" && $type != "no"){
+            return "非法请求";
+        }
+        $word = Diary::find($id);
+        $word -> changeFlag($type);
+        return json("success");
+    }
+
+    function getCount(){
+        $wc = Db::table('words')->where('flag', '=', 1)->count();
+        $dc = Db::table('diary')->where('flag', '=', 1)->count();
+        $res = array(
+            "wordsCount"   =>  $wc,
+            "diaryCount"   =>  $dc
+        );
+        return json($res);
     }
 
 }

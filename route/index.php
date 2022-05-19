@@ -13,7 +13,10 @@ Route::group(function (){
 
 Route::group(function (){
     Route::get("/admin/getWords","/AdminController/getWordsData");
-    Route::post("/admin/changeState","/AdminController/passVerification");
+    Route::get("/admin/getDiarys","/AdminController/getDiarysData");
+    Route::post("/admin/changeWordsState","/AdminController/changeWordsState");
+    Route::post("/admin/changeDiaryState","/AdminController/changeDiaryState");
+    Route::get("/admin/getCount","/AdminController/getCount");
 })->allowCrossDomain()->middleware('checkLogin');
 //})->allowCrossDomain();
 

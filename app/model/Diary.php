@@ -15,4 +15,13 @@ class Diary extends Model{
         'flag'          => 'int',
     ];
 
+    public function changeFlag($type){
+        if ($type == "yes"){
+            $this -> flag = 0;
+        }else{
+            $this -> flag = 2;
+        }
+        $this -> save();
+    }
+
 }
